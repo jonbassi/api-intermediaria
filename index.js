@@ -3,6 +3,7 @@ const app = express();
 const GETpokemon = require("./api/functionsGETpokemon");
 const GETmove = require("./api/functionGETmove");
 const GETitem = require("./api/functionGETitem");
+const GETability = require("./api/functionGETability");
 
 app.use(express.json({ extended: false }));
 app.use(express.json())
@@ -30,6 +31,15 @@ app.get('/move/:name', async (req, res) => {
 app.get('/item/:name', async (req, res) => {
 
     const response = await GETitem.itemInformations(req.params.name);
+    if (response != 'Not Found') res.status(200).json(response);
+    else {
+        res.status(404).send(response);
+    }
+});
+
+app.get('/ability/:name', async (req, res) => {
+
+    const response = await GETability.abilityInformations(req.params.name);
     if (response != 'Not Found') res.status(200).json(response);
     else {
         res.status(404).send(response);
