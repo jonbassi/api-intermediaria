@@ -79,6 +79,7 @@ module.exports = {
         array[i].name.includes("-mega")    ||
         array[i].name.includes("-aria")    ||
         array[i].name.includes("-hangry")  ||
+        array[i].name.includes("-amped")   ||
         array[i].name.includes("-primal")  ||
         array[i].name.includes("-totem")   ||
         array[i].name.includes("-busted")
