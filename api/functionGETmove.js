@@ -2,17 +2,17 @@ const axios = require("axios");
 
 module.exports = {
   async moveInformations(move) {
-    //    try {
-    let url = `https://pokeapi.co/api/v2/move/${move}`;
+    try {
+        let url = `https://pokeapi.co/api/v2/move/${move}`;
 
     const response = await axios.get(url);
     let data = response.data;
 
     return this.getMove(data);
-    // }
-    // catch (err) {
-    //    return err.response.data
-    // }
+    }
+    catch (err) {
+       return err.response.data
+    }
   },
 
   getMove(move) {
@@ -74,14 +74,15 @@ module.exports = {
   filterPokeName(array) {
     for (let i = 0; i < array.length; i++) {
       if (
-        array[i].name.includes("pikachu-") ||
-        array[i].name.includes("-gmax")    ||
-        array[i].name.includes("-mega")    ||
-        array[i].name.includes("-aria")    ||
-        array[i].name.includes("-hangry")  ||
-        array[i].name.includes("-amped")   ||
-        array[i].name.includes("-primal")  ||
-        array[i].name.includes("-totem")   ||
+        array[i].name.includes("pikachu-")    ||
+        array[i].name.includes("-gmax")       ||
+        array[i].name.includes("-mega")       ||
+        array[i].name.includes("-aria")       ||
+        array[i].name.includes("-hangry")     ||
+        array[i].name.includes("-amped")      ||
+        array[i].name.includes("-primal")     ||
+        array[i].name.includes("-disguised")  ||
+        array[i].name.includes("-totem")      ||
         array[i].name.includes("-busted")
       ) {
         array.splice(i, 1);
