@@ -19,6 +19,7 @@ module.exports = {
     pokemonBigData(poke) {
 
         const pokeNumber = poke.id;
+        const pokeName = poke.name.charAt(0).toUpperCase() + pokeName.slice(1);;
         const pokeWeight = (poke.weight / 10);
         const pokeHeight = (poke.height / 10);
         const pokeImage = poke.sprites.other['official-artwork'];
@@ -42,6 +43,7 @@ module.exports = {
         informations = {
             "pokeNumber": pokeNumber,
             "pokeWeight": pokeWeight,
+            "pokeName": pokeName,
             "pokeHeight": pokeHeight,
             "pokeImage": pokeImage,
             "pokeTypes": pokeTypes,
