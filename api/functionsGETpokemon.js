@@ -15,7 +15,6 @@ module.exports = {
         }
     },
 
-
     pokemonBigData(poke) {
 
         const pokeNumber = poke.id;

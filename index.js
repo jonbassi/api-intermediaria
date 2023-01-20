@@ -4,6 +4,7 @@ const GETpokemon = require("./api/functionsGETpokemon");
 const GETmove = require("./api/functionGETmove");
 const GETitem = require("./api/functionGETitem");
 const GETability = require("./api/functionGETability");
+const GETevolution = require("./api/functionGETevolution");
 
 app.use(express.json({ extended: false }));
 app.use(express.json())
@@ -45,6 +46,17 @@ app.get('/ability/:name', async (req, res) => {
         res.status(404).send(response);
     }
 });
+
+// testing 
+app.get('/evolution/:name', async (req, res) => {
+
+    const response = await GETevolution.evolution(req.params.name);
+    if (response != 'Not Found') res.status(200).json(response);
+    else {
+        res.status(404).send(response);
+    }
+});
+// end
 
 
 const PORT = process.env.PORT || 8080;
