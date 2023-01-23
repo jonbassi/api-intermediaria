@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const GETpokemon = require("./api/functionsGETpokemon");
 const GETmove = require("./api/functionGETmove");
+const GETpokeMoves = require("./api/functionGETpokeMoves");
 const GETitem = require("./api/functionGETitem");
 const GETability = require("./api/functionGETability");
 const GETevolution = require("./api/functionGETevolution");
@@ -51,6 +52,15 @@ app.get('/ability/:name', async (req, res) => {
 app.get('/evolution/:name', async (req, res) => {
 
     const response = await GETevolution.evolution(req.params.name);
+    if (response != 'Not Found') res.status(200).json(response);
+    else {
+        res.status(404).send(response);
+    }
+});
+
+app.get('/movesetPokemon/:name', async (req, res) => {
+
+    const response = await GETpokeMoves.getMoveSet(req.params.name);
     if (response != 'Not Found') res.status(200).json(response);
     else {
         res.status(404).send(response);

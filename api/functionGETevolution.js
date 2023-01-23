@@ -31,23 +31,60 @@ module.exports = {
       const responseFromEvoChain = await axios.get(evoChain);
       data = (responseFromEvoChain.data);
 
-      // TAKE SECOND STAGE EVOLUTION(S) AND DETAIL(S) | IF THE POKEMON IS A SECOND STAGE OR DOES'T HAVE SECOND STAGE EVOLUTION RETURNS EMPTY
+      // TAKE SECOND STAGE EVOLUTION(S) AND DETAIL(S)
       let allEvolutions = [];
-      data.chain.evolves_to.forEach(element => {
-          if (element.species.name != chosenPokemon && element.species.name != previousEvolution) {
-              allEvolutions.push(element.species.name);
-              allEvolutions.push(element['evolution_details'][0]);
-          }
-      });
+      let isAlternative = 'false';
 
-      // TAKE THIRD STAGE EVOLUTION(S) AND DETAIL(S) | IF THE POKEMON IS A THIRD STAGE OR DOES'T HAVE THIRD STAGE EVOLUTION RETURNS EMPTY
+      // function to specify alternative forms
+      function isGalar(name){
+        let galarForms = ["obstagoon","perrserker", "cursola", "sirfecth", "mr.rime", "runegrigus"]
+        for(let i = 0; i < galarForms.length; i++) {
+          if(name == galarForms[i]) isAlternative = 'galar';  
+        }
+        return isAlternative
+      }
+
+      data.chain.evolves_to.forEach(element => {
+        if (element.species.name != chosenPokemon && element.species.name != previousEvolution) {
+            if (!chosenPokemon.includes('-alola') || !chosenPokemon.includes('-galar')){
+                let evolutionObj = { 
+                  "evolutionName": element.species.name, 
+                  "evolutionDetails": element['evolution_details'],
+                  "isGalarForm": isGalar(element.species.name)
+                }
+                allEvolutions.push(evolutionObj);
+            } else {
+                let evolutionObj = {
+                  "evolutionName": element.species.name, 
+                  "evolutionDetails": element['evolution_details'],
+                  "isGalarForm": isGalar(element.species.name)
+                }
+                allEvolutions.push(evolutionObj);
+              }
+        }
+    });
+      // TAKE THIRD STAGE EVOLUTION(S) AND DETAIL(S)
       data.chain.evolves_to[0].evolves_to.forEach(element => {
-          if (element.species.name != chosenPokemon && element.species.name != previousEvolution) {
-              allEvolutions.push(element.species.name);
-              allEvolutions.push(element['evolution_details'][0]);
-          }
-      });
-      
+        if (element.species.name != chosenPokemon && element.species.name != previousEvolution) {
+            if (chosenPokemon.includes('-alola') || chosenPokemon.includes('-galar')){
+                let evolutionObj = { 
+                  "evolutionName": element.species.name, 
+                  "evolutionDetails": element['evolution_details'],
+                  "isGalarForm": isGalar(element.species.name)
+                }
+                allEvolutions.push(evolutionObj);
+            } else {
+                let evolutionObj = {
+                  "evolutionName": element.species.name, 
+                  "evolutionDetails": element['evolution_details'],
+                  "isGalarForm": isGalar(element.species.name)
+                }
+                allEvolutions.push(evolutionObj);
+            }
+        }
+    });
+
+      console.log(chosenPokemon);
       // END
       return allEvolutions;
     }
