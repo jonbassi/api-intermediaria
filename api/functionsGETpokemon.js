@@ -42,26 +42,26 @@ module.exports = {
         pokeAbilities = pokeAbilities.trim();
 
 
-        function traduzirTipoPokemon(tipo) {
-            return tipo.replaceAll("normal", "Normal")
-                       .replaceAll("fighting", "Lutador")
-                       .replaceAll("flying", "Voador")
-                       .replaceAll("poison", "Venenoso")
-                       .replaceAll("ground", "Terra")
-                       .replaceAll("rock", "Pedra")
-                       .replaceAll("bug", "Inseto")
-                       .replaceAll("ghost", "Fantasma")
-                       .replaceAll("steel", "Aço")
-                       .replaceAll("fire", "Fogo")
-                       .replaceAll("water", "Água")
-                       .replaceAll("grass", "Grama")
-                       .replaceAll("electric", "Elétrico")
-                       .replaceAll("psychic", "Psíquico")
-                       .replaceAll("ice", "Gelo")
-                       .replaceAll("dragon", "Dragão")
-                       .replaceAll("dark", "Noturno")
-                       .replaceAll("fairy", "Fada");
-        }
+        // function traduzirTipoPokemon(tipo) {
+        //     return tipo.replaceAll("normal", "Normal")
+        //                .replaceAll("fighting", "Lutador")
+        //                .replaceAll("flying", "Voador")
+        //                .replaceAll("poison", "Venenoso")
+        //                .replaceAll("ground", "Terra")
+        //                .replaceAll("rock", "Pedra")
+        //                .replaceAll("bug", "Inseto")
+        //                .replaceAll("ghost", "Fantasma")
+        //                .replaceAll("steel", "Aço")
+        //                .replaceAll("fire", "Fogo")
+        //                .replaceAll("water", "Água")
+        //                .replaceAll("grass", "Grama")
+        //                .replaceAll("electric", "Elétrico")
+        //                .replaceAll("psychic", "Psíquico")
+        //                .replaceAll("ice", "Gelo")
+        //                .replaceAll("dragon", "Dragão")
+        //                .replaceAll("dark", "Noturno")
+        //                .replaceAll("fairy", "Fada");
+        // }
 
         informations = {
             "pokeNumber": pokeNumber,
@@ -69,7 +69,7 @@ module.exports = {
             "pokeName": pokeName,
             "pokeHeight": pokeHeight,
             "pokeImage": pokeImage,
-            "pokeTypes": traduzirTipoPokemon(pokeTypes),
+            "pokeTypes": pokeTypes,
             "pokeAbilities": pokeAbilities
         }
 
